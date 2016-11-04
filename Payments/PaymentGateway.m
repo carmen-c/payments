@@ -12,7 +12,7 @@
 
 -(void) processPaymentAmount: (NSInteger) paymentAmount{
     
-    if (/*[self.paymentDelegate canProcessPayment] ==*/ YES) {
+    if ([self.paymentDelegate canProcessPayment] == YES) {
         [self.paymentDelegate processPaymentAmount:paymentAmount];
         
     }else{

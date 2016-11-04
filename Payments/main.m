@@ -25,22 +25,22 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"Thank you for shopping at Acme.com Your total today is $%ld Please select your payment\n method: 1: Paypal, 2: Stripe, 3: Amazon", (long)randomNumber);
         
-//        NSLog(@"%d", (int)[inputhandler paymentMethod]);
         
         PaymentGateway *paymentGateway = [[PaymentGateway alloc]init];
-//        [paymentGateway processPaymentAmount:randomNumber];
         
-        if ([inputhandler paymentMethod] == 1) {
+        NSInteger iChoose = [inputhandler paymentMethod];
+        
+        if (iChoose == 1) {
             PaypalPaymentService *paypal = [[PaypalPaymentService alloc]init];
             paymentGateway.paymentDelegate = paypal;
             [paymentGateway processPaymentAmount:randomNumber];
             
-        }else if ([inputhandler paymentMethod] == 2){
+        }else if (iChoose == 2){
             StripePaymentService *stripe = [[StripePaymentService alloc]init];
             paymentGateway.paymentDelegate = stripe;
             [paymentGateway processPaymentAmount:randomNumber];
             
-        }else if ([inputhandler paymentMethod] == 3){
+        }else if (iChoose == 3){
             AmazonPaymentService *amazon = [[AmazonPaymentService alloc]init];
             paymentGateway.paymentDelegate = amazon;
             [paymentGateway processPaymentAmount:randomNumber];

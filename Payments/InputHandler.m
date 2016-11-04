@@ -12,10 +12,10 @@
 
 - (NSInteger) paymentMethod {
     
-    char input[255];
+    char input [255];
     fgets(input, 255, stdin);
     
-    //convert input to int
+//    convert input to int
     NSString *paymentMethod = [NSString stringWithCString:input
                                          encoding:NSUTF8StringEncoding];
     paymentMethod = [paymentMethod stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
