@@ -12,10 +12,12 @@
 #import "PaypalPaymentService.h"
 #import "StripePaymentService.h"
 #import "AmazonPaymentService.h"
+#import "ApplePaymentService.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+//        while(YES){
         InputHandler *inputhandler= [[InputHandler alloc]init];
         
         int lower = 100;
@@ -23,7 +25,7 @@ int main(int argc, const char * argv[]) {
         int randomNumber = lower + arc4random() % (upper - lower);
     
         
-        NSLog(@"Thank you for shopping at Acme.com Your total today is $%ld Please select your payment\n method: 1: Paypal, 2: Stripe, 3: Amazon", (long)randomNumber);
+        NSLog(@"Thank you for shopping at Acme.com Your total today is $%ld Please select your payment\n method: 1: Paypal, 2: Stripe, 3: Amazon, 4:Apple", (long)randomNumber);
         
         
         PaymentGateway *paymentGateway = [[PaymentGateway alloc]init];
@@ -45,11 +47,16 @@ int main(int argc, const char * argv[]) {
             paymentGateway.paymentDelegate = amazon;
             [paymentGateway processPaymentAmount:randomNumber];
             
+        }else if (iChoose == 4){
+                ApplePaymentService *apple = [[ApplePaymentService alloc]init];
+                paymentGateway.paymentDelegate = apple;
+                [paymentGateway processPaymentAmount:randomNumber];
+            
         }else{
             NSLog(@"invalid method");
         }
         
-        
+//        }
     }
     return 0;
 }
